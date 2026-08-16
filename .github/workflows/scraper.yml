@@ -20,7 +20,8 @@ jobs:
 
       - name: Install uv and dependencies
         run: |
-          pip install uv
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
           uv sync --frozen || pip install -r requirements.txt || true
 
       - name: Run Appointment Watcher
