@@ -3,8 +3,12 @@ name: Appointment Watcher Bot
 on:
   schedule:
     # Runs every 10 minutes. You can change this if needed (e.g., '*/5 * * * *' for every 5 mins)
-    - cron: '*/10 * * * *'
+    - cron: '*/9 * * * *'
   workflow_dispatch: # Allows you to manually click "Run workflow" to test it instantly
+
+concurrency:
+  group: appointment-watcher-bot
+  cancel-in-progress: false
 
 jobs:
   run-bot:
