@@ -25,17 +25,9 @@ jobs:
           playwright install --with-deps
           uv sync --frozen || pip install -r requirements.txt || true
 
-      - name: Test Telegram Notification
+      - name: Run Appointment Watcher
         env:
-                TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-                TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-                python -c "
-                import os, requests
-                token = os.getenv('TELEGRAM_BOT_TOKEN')
-                chat_id = os.getenv('TELEGRAM_CHAT_ID')
-                url = f'https://api.telegram.org/bot{token}/sendMessage'
-                payload = {'chat_id': chat_id, 'text': '🤖 Hello! Test notification from GitHub Actions!'}
-                response = requests.post(url, json=payload)
-                print(response.json())
-                "
+          python frontdesk_watch_improve.py
