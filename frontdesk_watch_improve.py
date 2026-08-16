@@ -71,7 +71,7 @@ class Config:
     cutoff_day: int = 1
 
     wanted_start_date: date = date(2026, 9, 18)
-    wanted_end_date: date = date(2026, 10, 3)
+    wanted_end_date: date = date(2026, 11, 3)
 
     seen_file: str = "seen_slots.json"
 
