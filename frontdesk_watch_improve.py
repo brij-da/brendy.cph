@@ -274,13 +274,11 @@ def parse_times_from_html(
             strip=True
         )
 
-        # UPDATED SELECTOR BASED ON WEBPAGE SOURCE:
-        # Target the anchor links inside the time list items
-        time_links = day_div.select(
-            "ul.times-list li.time a"
+        time_spans = day_div.select(
+            "span.available-time"
         )
 
-        if not time_links:
+        if not time_spans:
             continue
 
         try:
@@ -292,9 +290,9 @@ def parse_times_from_html(
         except Exception:
             continue
 
-        for tl in time_links:
+        for ts in time_spans:
 
-            ttxt = tl.get_text(
+            ttxt = ts.get_text(
                 strip=True
             )
 
